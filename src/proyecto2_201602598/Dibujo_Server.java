@@ -56,6 +56,7 @@ class Capa_Server extends JPanel{
         super.paintComponent(g);
         Graphics2D g2=(Graphics2D)g;
         Servidor ser=new Servidor();
+        Personas per=new Personas();
         for(int i=0;i<ser.oblong();i++){
         
          //String aux=ser.obServer2(i);
@@ -89,6 +90,15 @@ class Capa_Server extends JPanel{
             
         //Rectangle2D rectangulo=new Rectangle2D.Double(x, y, w, h);
      
+        }
+        for(int i=0;i<per.oblonper();i++){
+            String aux=per.obPersonas()[i];
+            if(aux!=null){
+                String [] coo= aux.split(";");
+                g2.setColor(Color.YELLOW);
+                int radio=Integer.parseInt(coo[4]);
+                g2.fillOval(Integer.parseInt(coo[0]), Integer.parseInt(coo[1]), radio*2,radio*2);
+            }
         }
        
     }

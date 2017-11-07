@@ -302,6 +302,11 @@ Personas persona;
                 servidor.setServer(as);
             }
             servidor.reiniciarcont();
+            
+            for(int as=0;as<persona.oblonper();as++){
+                persona.setPersonas(as);
+            }
+            persona.reiniciarCont();
         
         
         String fila="";//

@@ -16,8 +16,26 @@ public class Proyecto2_201602598 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        IngresarSistema is=new IngresarSistema();
-        is.setVisible(true);
+       /* IngresarSistema is=new IngresarSistema();
+        is.setVisible(true);*/
+       
+       ListaEnlazada lista=new ListaEnlazada();
+       
+        System.out.println("Esta vacia? "+lista.Vacia());
+        lista.addCabeza("Hola1");
+        lista.addCabeza(2);
+        lista.addCabeza("xd3");
+        lista.addCabeza("was4");
+        
+        
+        lista.eliminar(2);
+        System.out.println("Primer elemento "+lista.obElemento(0));
+        System.out.println("Ultimo elemento "+lista.obElemento(lista.obTamaño()-1));
+        System.out.println("indice 2 "+lista.obElemento(2));
+        System.out.println(lista.tamaño);
+        
+        
+        System.out.println("Esta vacia? "+lista.Vacia());
     }
     
 }
