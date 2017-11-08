@@ -13,6 +13,7 @@ public class ListaEnlazada {
 
 Nodo cabeza;
 int tamaño;
+private String id1,id2,id3;
     public ListaEnlazada(){
         cabeza=null;
         tamaño=0;

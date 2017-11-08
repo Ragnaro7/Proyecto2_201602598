@@ -34,6 +34,10 @@ private String[] columnas;
 //int contadorserver;
 Servidor servidor;
 Personas persona;
+Inventario inventario;
+Inicio inicio;
+ListaEnlazada listaproductos;
+Productos producto;
 //Dibujo_Server dibujoserver;
     /**
      * Creates new form Pantalla
@@ -50,6 +54,10 @@ Personas persona;
         //contadorserver=0;
         servidor=new Servidor();
         persona=new Personas();
+        inventario=new Inventario();
+        inicio=new Inicio();
+        listaproductos=new ListaEnlazada();
+        producto=new Productos();
         /*modelo.addColumn("Accion");
         modelo.addColumn("NoServidor");
         modelo.addColumn("Siguiente");
@@ -82,7 +90,40 @@ Personas persona;
            System.out.println(Arrays.toString(datos));
            }else if(tipo.equalsIgnoreCase("Personas")){
              persona.setPersonas(datos[3], datos[4], datos[7], datos[8], datos[9]);
-             
+           }else if(tipo.equalsIgnoreCase("Inventario")){
+               inventario.setInventario(datos[8], datos[10], datos[14]);
+           }//else if(tipo.equalsIgnoreCase("Inicio")){
+              // inicio.setInicio(datos[10], datos[14]);
+//           }
+           else if(tipo.equalsIgnoreCase("Productos")){
+            producto.setProductos(datos[10], datos[11], datos[12], datos[13]);
+           }
+        else if(tipo.equalsIgnoreCase("Inicio")){
+               String aux1=producto.obProductos(0);
+               String[] coo1=aux1.split(";");
+               String aux2=producto.obProductos(1);
+               String[] coo2=aux2.split(";");
+               String aux3=producto.obProductos(2);
+               String[] coo3=aux3.split(";");
+               if(datos[10].equalsIgnoreCase(coo1[0])){
+                   int contador=0;
+                   while(contador<Integer.parseInt(datos[14])){
+                       listaproductos.addCabeza(Arrays.toString(coo1).substring(1).replaceAll("]",""));
+                       contador++;
+                   }
+               }else if(datos[10].equalsIgnoreCase(coo2[0])){
+                   int contador=0;
+                   while(contador<Integer.parseInt(datos[14])){
+                       listaproductos.addCabeza(Arrays.toString(coo2).substring(1).replaceAll("]",""));
+                       contador++;
+                   }
+               }else if(datos[10].equalsIgnoreCase(coo3[0])){
+                   int contador=0;
+                   while(contador<Integer.parseInt(datos[14])){
+                       listaproductos.addCabeza(Arrays.toString(coo3).substring(1).replaceAll("]",""));
+                       contador++;
+                   }
+               }
            }
         
     }
@@ -127,14 +168,14 @@ Personas persona;
         btnresultados = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         Texto = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        paneldi = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        frame2 = new javax.swing.JInternalFrame();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -202,21 +243,29 @@ Personas persona;
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 40, 30));
 
+        jButton5.setText("jButton5");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
+
         jButton2.setText("jButton2");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, -1));
 
-        jButton3.setText("jButton3");
+        jButton3.setText("lista");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 0, -1, -1));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 880, 80));
 
@@ -236,17 +285,11 @@ Personas persona;
         Texto.setViewportView(tabla);
 
         jTabbedPane2.addTab("Solo lectura", Texto);
-        jTabbedPane2.addTab("tab2", paneldi);
+
+        frame2.setVisible(true);
+        jTabbedPane2.addTab("Simulacion", frame2);
 
         jPanel2.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 890, 340));
-
-        jButton4.setText("jButton4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 0, -1, -1));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 890, 350));
 
@@ -399,9 +442,12 @@ Personas persona;
     //  Dibujo di=new Dibujo();
       //di.setVisible(true);
         //PLAY
-     Dibujo_Server dibujoserver=new Dibujo_Server();
-    
-        dibujoserver.setVisible(true);
+        jTabbedPane2.setSelectedIndex(jTabbedPane2.indexOfTab("Simulacion"));
+         Capa_Server fig=new Capa_Server();
+       
+     //Dibujo_Server dibujoserver=new Dibujo_Server();
+     frame2.add(fig);
+        //dibujoserver.setVisible(true);
         
        
         
@@ -428,61 +474,26 @@ Personas persona;
         }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        inventario.imprimir();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-       // jTabbedPane2.setSelectedIndex(1);
-       //Servidor [] ser2=new Servidor[3];
-              //JPanel pa=new JPanel();
-       //boolean as=false;
-     /*   Dibujo di=new Dibujo();
-       for(int i=0;i<server.length;i++){
-           String aux=server[i];
-           if(aux!=null){
-                 String[] coo=aux.split(";");
-                 di=new Dibujo(
-                  coo[2],coo[3],coo[4],coo[5]);*/
-     
-     
-                    //jTabbedPane2.setSelectedIndex(jTabbedPane2.indexOfTab("tab2"));
-                    //jTabbedPane2.add(ser);
-                    //jTabbedPane2.add(ser, 1);
-                    //jPanel3.add(ser);
-        //    paneldi.add(ser2[i]);
-                    //pa.add(ser2[i])
-                   // pa.add(ser2[0]);
-                  // paneldi.add(ser2[i]);
-               // jTabbedPane2.addTab("Dibujo", ser);
-              /*  jTabbedPane2.addTab("Dibujo", ser);
-                */ 
-              //jTabbedPane2.setSelectedIndex(jTabbedPane2.indexOfTab("Dibujo"));
-              
-       //    }
-  
-     // }
-   //  di.setVisible(true);     
-      //  jTabbedPane2.add(ser);
-     
-    /*for(Servidor e:ser2){
-        paneldi.add(e);  
-      } */
-      
-      
-        
-       
-        //add(ser);
+        System.out.println("Inicio");
+        inicio.imprimir();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        //borrar desde aca
-        servidor.imprimir();
+        listaproductos.obTamaño();
+        for(int i=0;i<listaproductos.obTamaño();i++){
+            System.out.println(listaproductos.obElemento(i));
+        }
+       
+     
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        persona.imprimirper();
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -529,14 +540,14 @@ Personas persona;
     private javax.swing.JButton btnsalir;
     private javax.swing.JButton btnstop;
     private javax.swing.JFileChooser fc;
+    private javax.swing.JInternalFrame frame2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JPanel paneldi;
     private javax.swing.JTable tabla;
     // End of variables declaration//GEN-END:variables
 }
