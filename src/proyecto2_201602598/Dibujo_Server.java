@@ -31,20 +31,24 @@ public class Dibujo_Server extends JFrame{
     
 }
 
-class Capa_Server extends JPanel{
+class Capa_Server extends JPanel implements Runnable{
  //   private Servidor ser;
     private double x,y,w,h;
+    //private int au=getWidth()/2;
+    private int au=5;
     private String[] arr;
-    
-    public Capa_Server(String x1,String y1,String w1,String h1){
+     Thread hilo;
+   /* public Capa_Server(String x1,String y1,String w1,String h1){
         x=Double.parseDouble(x1);
         y=Double.parseDouble(y1);
         w=Double.parseDouble(w1);
         h=Double.parseDouble(h1);
     //    ser=new Servidor();
-    }
+    }*/
      public Capa_Server(){
        //  ser=new Servidor();
+      hilo=new Thread(this);
+       hilo.start();
      }
      
      public void arreglo(String[] r){
@@ -80,10 +84,10 @@ class Capa_Server extends JPanel{
         
         g2.setColor(Color.GREEN);
         g2.fillPolygon(posx, posy, 3);
-                System.out.println(i+","+Arrays.toString(coo));
-            }else{
-                System.out.println(ser.obServer2(i)+i);
-            }    
+               // System.out.println(i+","+Arrays.toString(coo));
+            }//else{
+               // System.out.println(ser.obServer2(i)+i);
+          //  }    
             
             
             
@@ -91,16 +95,36 @@ class Capa_Server extends JPanel{
         //Rectangle2D rectangulo=new Rectangle2D.Double(x, y, w, h);
      
         }
+        
+        //PERSONAS
         for(int i=0;i<per.oblonper();i++){
             String aux=per.obPersonas()[i];
             if(aux!=null){
                 String [] coo= aux.split(";");
                 g2.setColor(Color.YELLOW);
                 int radio=Integer.parseInt(coo[4]);
-                g2.fillOval(Integer.parseInt(coo[0]), Integer.parseInt(coo[1]), radio*2,radio*2);
+                int auxx=Integer.parseInt(coo[0]);
+                g2.fillOval(auxx+au, Integer.parseInt(coo[1]), radio*2,radio*2);
             }
         }
        
+    }
+
+    @Override
+    public void run() {
+        try{
+              while(true){
+        while(au<800){
+            Thread.sleep(2000);
+            au+=20;
+            repaint();
+        }
+    }
+        }catch(Exception e){
+            
+        }
+  
+    
     }
     
 }
