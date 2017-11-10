@@ -33,8 +33,12 @@ public class Dibujo_Server extends JFrame{
 
 class Capa_Server extends JPanel implements Runnable{
  //   private Servidor ser;
-    private double x,y,w,h;
+    //private double x,y,w,h;
     //private int au=getWidth()/2;
+    int a = 50;
+    int b = 50;
+    int c = 50;
+    
     private int au=5;
     private String[] arr;
      Thread hilo;
@@ -103,8 +107,14 @@ class Capa_Server extends JPanel implements Runnable{
                 String [] coo= aux.split(";");
                 g2.setColor(Color.YELLOW);
                 int radio=Integer.parseInt(coo[4]);
-                int auxx=Integer.parseInt(coo[0]);
-                g2.fillOval(auxx+au, Integer.parseInt(coo[1]), radio*2,radio*2);
+               // int auxx=Integer.parseInt(coo[0]);
+              // a =Integer.parseInt(coo[0]);
+               //b=Integer.parseInt(coo[0]);
+               //c=Integer.parseInt(coo[0]);
+               
+               g2.fillOval(a, Integer.parseInt(coo[1]), radio*2,radio*2);
+                g2.fillOval(b, Integer.parseInt(coo[1]), radio*2,radio*2);
+                g2.fillOval(c, Integer.parseInt(coo[1]), radio*2,radio*2);
             }
         }
        
@@ -114,11 +124,77 @@ class Capa_Server extends JPanel implements Runnable{
     public void run() {
         try{
               while(true){
-        while(au<800){
-            Thread.sleep(2000);
-            au+=20;
-            repaint();
-        }
+        while (a < 200 && b == 50 && c == 50) {
+                    Thread.sleep(2000);
+                    a += 20;
+                    b += 0;
+                    c += 0;
+                    repaint();
+                    if(a==190){
+                         Thread.sleep(5000);
+                         System.out.println("Durmiendo");
+                         a+=20;
+                    }
+                }
+//                while (x < 200) {
+//                    Thread.sleep(500);
+//                    x += 117;
+//                    repaint();
+//                }
+                while (a < 500 && b < 200 && c == 50) {
+
+                    Thread.sleep(2000);
+                    a += 20;
+                    b += 20;
+                    c += 0;
+                    repaint();
+                }/*
+
+                while (a < 800 && b < 500 && c < 200) {
+                    Thread.sleep(2000);
+                    a += 260;
+                    b += 260;
+                    c += 117;
+                    repaint();
+                }
+                while (a < 800 && b < 800 && c < 500) {
+                    Thread.sleep(2000);
+                    a += 260;
+                    b += 260;
+                    c += 260;
+                    repaint();
+
+                }
+
+                while (a > 1020 && b < 800 && c < 800) {
+                    Thread.sleep(2000);
+                    b += 260;
+                    c += 260;
+                    a -= 897;
+                    repaint();
+                }
+                while (a < 200 && b > 1020 && c < 800) {
+                    Thread.sleep(2000);
+                    a += 117;
+                    c += 260;
+                    b -= 897;
+                    repaint();
+                }
+                
+     while (a< 500 && b < 200 && c > 1020) {
+                    Thread.sleep(2000);
+                    a += 260;
+                    b += 117;
+                    c -= 897;
+                    repaint();
+                }
+//                if (x > 1020 && z > 1020&&z > 1020) {
+//                    Thread.sleep(Integer.parseInt(Archivo.arreglo[64]) * 1000);
+//                    x -= 897;
+//                    z -= 897;
+//                    w -= 897;
+//                    repaint();
+*/
     }
         }catch(Exception e){
             
