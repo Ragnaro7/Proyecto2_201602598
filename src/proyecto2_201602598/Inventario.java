@@ -6,7 +6,7 @@ private static int contadorproduccion=0;
 private String tiempo,cantidad;
 
 public void setInventario(String tiempo,String id,String cantidad){
-    produccion[contadorproduccion]=tiempo+";"+id+","+cantidad;
+    produccion[contadorproduccion]=tiempo+";"+id+";"+cantidad;
     contadorproduccion++;
 }
 

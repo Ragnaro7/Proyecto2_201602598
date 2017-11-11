@@ -147,9 +147,12 @@ class Capa_Server extends JPanel implements Runnable{
 
     @Override
     public void run() {
+        HiloInventario hilito=new HiloInventario();
+                         hilito.qewr();
         try{
               while(true){
         while (a < 200 && b == 50 && c == 50) {
+            
                     Thread.sleep(1000);
                     a += 20;
                     b += 0;
@@ -160,9 +163,11 @@ class Capa_Server extends JPanel implements Runnable{
                         cola1++;
                          Thread.sleep(5000);
                          System.out.println("Durmiendo");
-            //             aviso1="";
+                         
+                         
+                         aviso1="";
                          //a+=20;
-         //              cola1--;
+                       cola1--;
                     }
                 }
 //                while (x < 200) {
@@ -173,7 +178,7 @@ class Capa_Server extends JPanel implements Runnable{
                 while (b < 400 && c == 50) {
 
                     Thread.sleep(1000);
-                  //  a += 20;
+                    a += 20;
                     b += 60;
                     c += 0;
                     repaint();

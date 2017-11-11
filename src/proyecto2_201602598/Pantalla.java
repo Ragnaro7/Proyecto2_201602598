@@ -38,6 +38,7 @@ Inventario inventario;
 Inicio inicio;
 ListaEnlazada listaproductos;
 Productos producto;
+RecoleccionDatos reda=new RecoleccionDatos();
 //Dibujo_Server dibujoserver;
     /**
      * Creates new form Pantalla
@@ -83,6 +84,10 @@ Productos producto;
         }
     }
     
+    public void ingresarProd(String producto){
+        listaproductos.addCabeza(producto);
+    }
+    
     public void Llenar(String tipo,String[] datos){
         
         if(tipo.equalsIgnoreCase("Servidores")){
@@ -109,18 +114,22 @@ Productos producto;
                    int contador=0;
                    while(contador<Integer.parseInt(datos[14])){
                        listaproductos.addCabeza(Arrays.toString(coo1).substring(1).replaceAll("]",""));
+                          //reda.setRecoleccion1((String)listaproductos.obElemento(i));
+                          reda.setRecoleccion1(Arrays.toString(coo1).substring(1).replaceAll("]",""));
                        contador++;
                    }
                }else if(datos[10].equalsIgnoreCase(coo2[0])){
                    int contador=0;
                    while(contador<Integer.parseInt(datos[14])){
                        listaproductos.addCabeza(Arrays.toString(coo2).substring(1).replaceAll("]",""));
+                        reda.setRecoleccion2(Arrays.toString(coo2).substring(1).replaceAll("]",""));
                        contador++;
                    }
                }else if(datos[10].equalsIgnoreCase(coo3[0])){
                    int contador=0;
                    while(contador<Integer.parseInt(datos[14])){
                        listaproductos.addCabeza(Arrays.toString(coo3).substring(1).replaceAll("]",""));
+                        reda.setRecoleccion3(Arrays.toString(coo3).substring(1).replaceAll("]",""));
                        contador++;
                    }
                }
@@ -168,9 +177,8 @@ Productos producto;
         btnresultados = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         Texto = new javax.swing.JScrollPane();
@@ -243,22 +251,6 @@ Productos producto;
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 40, 30));
 
-        jButton5.setText("jButton5");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 0, -1, -1));
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, -1));
-
         jButton3.setText("lista");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -266,6 +258,14 @@ Productos producto;
             }
         });
         jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, -1));
+
+        jButton4.setText("Arreglos");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 880, 80));
 
@@ -474,26 +474,43 @@ Productos producto;
         }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        inventario.imprimir();
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Inicio");
-        inicio.imprimir();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        listaproductos.obTamaño();
-        for(int i=0;i<listaproductos.obTamaño();i++){
-            System.out.println(listaproductos.obElemento(i));
+       // RecoleccionDatos reda=new RecoleccionDatos();
+      
+        for(String e:reda.obRecoleccion1()){
+            if(e!=null)
+            System.out.println(e);
+        }
+        
+        for(String e:reda.obRecoleccion2()){
+            if(e!=null)
+            System.out.println(e);
+        }
+        
+        for(String e:reda.obRecoleccion3()){
+            if(e!=null)
+            System.out.println(e);
         }
        
      
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        for(int i=0;i<500;i++){
+            
+            if(reda.obRecoleccion1()[i]!=null){
+            System.out.println(reda.obRecoleccion1()[i]);
+            }/*
+            if(reda.obRecoleccion2()[i]!=null){
+            System.out.println(reda.obRecoleccion2()[i]);
+            }
+            if(reda.obRecoleccion3()[i]!=null){
+            System.out.println(reda.obRecoleccion3()[i]);
+             }*/
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -542,9 +559,8 @@ Productos producto;
     private javax.swing.JFileChooser fc;
     private javax.swing.JInternalFrame frame2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane2;
