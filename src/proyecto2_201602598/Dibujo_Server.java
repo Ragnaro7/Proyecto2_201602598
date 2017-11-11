@@ -36,9 +36,9 @@ class Capa_Server extends JPanel implements Runnable{
     //private double x,y,w,h;
     //private int au=getWidth()/2;
     int a = 50;
-    int b = 50;
-    int c = 50;
-    int d=50;
+    int b = 50-120;
+    int c = 50-220;
+    int d=50-300;
     String aviso1="";
     String aviso2="";
     String aviso3="";
@@ -151,23 +151,25 @@ class Capa_Server extends JPanel implements Runnable{
                          hilito.qewr();
         try{
               while(true){
-        while (a < 200 && b == 50 && c == 50) {
-            
-                    Thread.sleep(1000);
+        while (a < 200) {
+            Thread.sleep(2000);
                     a += 20;
-                    b += 0;
-                    c += 0;
+                    b += 20;
+                    c += 20;
+                    d+=20;
                     repaint();
                     if(a==190){
-                        aviso1="Ocupado";
+                       
+                        aviso1="Cola";
                         cola1++;
                          Thread.sleep(5000);
                          System.out.println("Durmiendo");
                          
-                         
                          aviso1="";
                          //a+=20;
-                       cola1--;
+                       cola1=0;
+                        a+=20;
+                         repaint();
                     }
                 }
 //                while (x < 200) {
@@ -175,40 +177,57 @@ class Capa_Server extends JPanel implements Runnable{
 //                    x += 117;
 //                    repaint();
 //                }
-                while (b < 400 && c == 50) {
-
-                    Thread.sleep(1000);
+                while (b < 200) {
+                     Thread.sleep(2000);
                     a += 20;
-                    b += 60;
-                    c += 0;
+                    b += 20;
+                    c += 20;
+                    d+=20;
                     repaint();
-                      if(b==410){
-                        aviso2="Ocupado";
-                        cola2++;
+                      if(b==190){
+                          a+=20;
+                          c+=20;
+                          d+=20;
+                          cola1++;
+                        aviso1="Cola";
+                        cola1++;
                          Thread.sleep(5000);
                          System.out.println("Durmiendo");
+                         cola1=0;
+                         b+=50;
+                         repaint();
                //          aviso2="";
                          //a+=20;
             //            cola2--;
                     }
+                    
                 }
 
-                while (c < 600) {
-                    Thread.sleep(1000);
-                  //  a += 20;
-                  //  b += 20;
-                    c += 50;
+                while (c < 200) {
+                    Thread.sleep(2000);
+                    a += 20;
+                    b += 20;
+                    c += 20;
+                    d+=20;
                     repaint();
-                    if(c==600){
-                        aviso3="Ocupado";
-                        cola3++;
+                    if(c==190){
+                        aviso1="Cola";
+                        cola1++;
                          Thread.sleep(5000);
                          System.out.println("Durmiendo");
                  //        aviso3="";
                          //a+=20;
                  //      cola3--;
                     }
-                }
+                    if(a>370||a<401 ){
+                          aviso2="Cola";
+                        cola2++;
+                         Thread.sleep(5000);
+                         cola2=0;
+                         a+=80;
+                         repaint();
+                    }
+                }/*
                 while (d < 200) {
                     Thread.sleep(1000);
                     d += 65;
@@ -223,7 +242,7 @@ class Capa_Server extends JPanel implements Runnable{
                          //a+=20;
                       // cola1--;
                     }
-                }
+                }*/
                 /*
                 while (a < 800 && b < 800 && c < 500) {
                     Thread.sleep(2000);
