@@ -38,7 +38,13 @@ class Capa_Server extends JPanel implements Runnable{
     int a = 50;
     int b = 50;
     int c = 50;
-    
+    int d=50;
+    String aviso1="";
+    String aviso2="";
+    String aviso3="";
+    private int cola1=0;
+    private int cola2=0;
+    private int cola3=0;
     private int au=5;
     private String[] arr;
      Thread hilo;
@@ -85,6 +91,23 @@ class Capa_Server extends JPanel implements Runnable{
         int posy[]={Integer.parseInt(coo[3])+20,Integer.parseInt(coo[3])+60,
         Integer.parseInt(coo[3])+60};
         
+        if(coo[0].equals("1")){
+            g2.drawString(aviso1, Integer.parseInt(coo[2]),Integer.parseInt(coo[3])-10);
+              if(cola1!=0){
+            g2.drawString(String.valueOf(cola1), posx[0], posy[0]-20);
+        }
+        }else if(coo[0].equals("2")){
+            g2.drawString(aviso2, Integer.parseInt(coo[2]),Integer.parseInt(coo[3])-10);
+              if(cola2!=0){
+            g2.drawString(String.valueOf(cola2), posx[0], posy[0]-20);
+        }
+        }else if(coo[0].equals("3")){
+            g2.drawString(aviso3, Integer.parseInt(coo[2]),Integer.parseInt(coo[3])-10);
+              if(cola3!=0){
+            g2.drawString(String.valueOf(cola3), posx[0], posy[0]-20);
+        }
+        }
+      
         
         g2.setColor(Color.GREEN);
         g2.fillPolygon(posx, posy, 3);
@@ -107,6 +130,7 @@ class Capa_Server extends JPanel implements Runnable{
                 String [] coo= aux.split(";");
                 g2.setColor(Color.YELLOW);
                 int radio=Integer.parseInt(coo[4]);
+                
                // int auxx=Integer.parseInt(coo[0]);
               // a =Integer.parseInt(coo[0]);
                //b=Integer.parseInt(coo[0]);
@@ -115,6 +139,7 @@ class Capa_Server extends JPanel implements Runnable{
                g2.fillOval(a, Integer.parseInt(coo[1]), radio*2,radio*2);
                 g2.fillOval(b, Integer.parseInt(coo[1]), radio*2,radio*2);
                 g2.fillOval(c, Integer.parseInt(coo[1]), radio*2,radio*2);
+                g2.fillOval(d, Integer.parseInt(coo[1]), radio*2,radio*2);
             }
         }
        
@@ -125,15 +150,19 @@ class Capa_Server extends JPanel implements Runnable{
         try{
               while(true){
         while (a < 200 && b == 50 && c == 50) {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                     a += 20;
                     b += 0;
                     c += 0;
                     repaint();
                     if(a==190){
+                        aviso1="Ocupado";
+                        cola1++;
                          Thread.sleep(5000);
                          System.out.println("Durmiendo");
-                         a+=20;
+            //             aviso1="";
+                         //a+=20;
+         //              cola1--;
                     }
                 }
 //                while (x < 200) {
@@ -141,22 +170,56 @@ class Capa_Server extends JPanel implements Runnable{
 //                    x += 117;
 //                    repaint();
 //                }
-                while (a < 500 && b < 200 && c == 50) {
+                while (b < 400 && c == 50) {
 
-                    Thread.sleep(2000);
-                    a += 20;
-                    b += 20;
+                    Thread.sleep(1000);
+                  //  a += 20;
+                    b += 60;
                     c += 0;
                     repaint();
-                }/*
-
-                while (a < 800 && b < 500 && c < 200) {
-                    Thread.sleep(2000);
-                    a += 260;
-                    b += 260;
-                    c += 117;
-                    repaint();
+                      if(b==410){
+                        aviso2="Ocupado";
+                        cola2++;
+                         Thread.sleep(5000);
+                         System.out.println("Durmiendo");
+               //          aviso2="";
+                         //a+=20;
+            //            cola2--;
+                    }
                 }
+
+                while (c < 600) {
+                    Thread.sleep(1000);
+                  //  a += 20;
+                  //  b += 20;
+                    c += 50;
+                    repaint();
+                    if(c==600){
+                        aviso3="Ocupado";
+                        cola3++;
+                         Thread.sleep(5000);
+                         System.out.println("Durmiendo");
+                 //        aviso3="";
+                         //a+=20;
+                 //      cola3--;
+                    }
+                }
+                while (d < 200) {
+                    Thread.sleep(1000);
+                    d += 65;
+                   repaint();
+                    if(d==180){
+                      //  aviso1="Ocupado";
+                        cola1++;
+                         Thread.sleep(5000);
+                         System.out.println("Durmiendo");
+                         repaint();
+                    //     aviso1="";
+                         //a+=20;
+                      // cola1--;
+                    }
+                }
+                /*
                 while (a < 800 && b < 800 && c < 500) {
                     Thread.sleep(2000);
                     a += 260;
