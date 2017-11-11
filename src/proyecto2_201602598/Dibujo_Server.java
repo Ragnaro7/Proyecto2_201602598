@@ -35,6 +35,7 @@ class Capa_Server extends JPanel implements Runnable{
  //   private Servidor ser;
     //private double x,y,w,h;
     //private int au=getWidth()/2;
+    int tiempo=200;
     int a = 50;
     int b = 50-120;
     int c = 50-220;
@@ -152,7 +153,7 @@ class Capa_Server extends JPanel implements Runnable{
         try{
               while(true){
         while (a < 200) {
-            Thread.sleep(2000);
+            Thread.sleep(tiempo);
                     a += 20;
                     b += 20;
                     c += 20;
@@ -163,7 +164,7 @@ class Capa_Server extends JPanel implements Runnable{
                         aviso1="Cola";
                         cola1++;
                          Thread.sleep(5000);
-                         System.out.println("Durmiendo");
+                         System.out.println("cola1 llego");
                          
                          aviso1="";
                          //a+=20;
@@ -178,7 +179,7 @@ class Capa_Server extends JPanel implements Runnable{
 //                    repaint();
 //                }
                 while (b < 200) {
-                     Thread.sleep(2000);
+                     Thread.sleep(tiempo);
                     a += 20;
                     b += 20;
                     c += 20;
@@ -192,9 +193,9 @@ class Capa_Server extends JPanel implements Runnable{
                         aviso1="Cola";
                         cola1++;
                          Thread.sleep(5000);
-                         System.out.println("Durmiendo");
+                         System.out.println("Cola2 llego");
                          cola1=0;
-                         b+=50;
+                         b+=20;
                          repaint();
                //          aviso2="";
                          //a+=20;
@@ -204,7 +205,7 @@ class Capa_Server extends JPanel implements Runnable{
                 }
 
                 while (c < 200) {
-                    Thread.sleep(2000);
+                    Thread.sleep(tiempo);
                     a += 20;
                     b += 20;
                     c += 20;
@@ -214,35 +215,173 @@ class Capa_Server extends JPanel implements Runnable{
                         aviso1="Cola";
                         cola1++;
                          Thread.sleep(5000);
-                         System.out.println("Durmiendo");
+                         System.out.println("cola c llego a 1");
+                         c+=20;
+                         cola1--;
+                         repaint();
                  //        aviso3="";
                          //a+=20;
                  //      cola3--;
                     }
-                    if(a>370||a<401 ){
+                    if(a==370 ){
                           aviso2="Cola";
                         cola2++;
+                         repaint();
                          Thread.sleep(5000);
-                         cola2=0;
-                         a+=80;
+                         System.out.println("ColaA llego a 2");
+                         cola2--;
+                         a+=20;
+                         b+=20;
+                         c+=20;
+                         d+=20;
                          repaint();
                     }
-                }/*
+                }
                 while (d < 200) {
-                    Thread.sleep(1000);
-                    d += 65;
+                    Thread.sleep(tiempo);
+                    d += 20;
+                    a+=20;
+                    b+=20;
+                    c+=20;
                    repaint();
-                    if(d==180){
-                      //  aviso1="Ocupado";
+                    if(d==190){
+                       aviso1="Ocupado";
                         cola1++;
+                        repaint();
                          Thread.sleep(5000);
-                         System.out.println("Durmiendo");
+                         System.out.println("PersonaD llego a A");
+                         d+=20;
+                         cola1--;
                          repaint();
+                         
                     //     aviso1="";
                          //a+=20;
                       // cola1--;
+                  
                     }
-                }*/
+                   
+                }
+                
+                while(d<650){
+                    Thread.sleep(tiempo);
+                    d += 20;
+                    a+=20;
+                    b+=20;
+                    c+=20;
+                   repaint();
+                   
+                        if(b>380&&b<401){
+                           aviso2="Cola";
+                        cola2++;
+                         repaint();
+                         Thread.sleep(5000);
+                         System.out.println("ColaB llego a 2");
+                         cola2--;
+                         a+=20;
+                         b+=20;
+                         c+=20;
+                         d+=20;
+                         repaint();
+                        
+                    }
+                   
+                   
+                  if(a>580&&a<601){
+                        aviso3="Cola";
+                        cola3++;
+                 
+                         repaint();
+                         Thread.sleep(5000);
+                         System.out.println("ColaA llego a 3");
+                         cola3--;
+                       
+                         a+=20;
+                         b+=20;
+                         c+=20;
+                         d+=20;
+                         repaint();
+                        
+                   }
+                   
+                   
+                   if(b>580&&b<601){
+                        aviso3="Cola";
+                        cola3++;
+                 
+                         repaint();
+                         Thread.sleep(5000);
+                         System.out.println("ColaB llego a 3");
+                         cola3--;
+                       
+                         a+=20;
+                         b+=20;
+                         c+=20;
+                         d+=20;
+                         repaint();
+                        
+                   }
+                         
+                   if(c>580&&c<601){
+                        aviso3="Cola";
+                        cola3++;
+                        repaint();
+                         Thread.sleep(5000);
+                         System.out.println("Cola3 llego a 3");
+                         cola3--;
+                         
+                            a+=20;
+                         b+=20;
+                         c+=20;
+                         d+=20;
+                         repaint();
+                   }
+                   
+                   if(d>580&&d<601){
+                        aviso3="Cola";
+                        cola3++;
+                 
+                         repaint();
+                         Thread.sleep(5000);
+                         System.out.println("ColaD llego a 3");
+                         cola3--;
+                       
+                         a+=20;
+                         b+=20;
+                         c+=20;
+                         d+=20;
+                         repaint();
+                        
+                   }
+                   
+                  if(d==390){
+                      aviso2="Ocupado";
+                        cola2++;
+                        repaint();
+                         Thread.sleep(5000);
+                         System.out.println("ColaD llego a 2");
+                         d+=20;
+                         a+=20;
+                         b+=20;
+                         c+=20;
+                         cola2--;
+                         repaint();
+                  }
+                  
+                  if(c==390){
+                           aviso2="Ocupado";
+                        cola2++;
+                        repaint();
+                         Thread.sleep(5000);
+                         System.out.println("ColaC llego a 2");
+                         d+=20;
+                         a+=20;
+                         b+=20;
+                         c+=20;
+                         cola2--;
+                         repaint(); 
+                  }
+                    
+                }
                 /*
                 while (a < 800 && b < 800 && c < 500) {
                     Thread.sleep(2000);
