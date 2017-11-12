@@ -13,6 +13,9 @@ import java.util.logging.Logger;
  * @author Hector
  */
 public class HiloInventario implements Runnable {
+    static int c1=0;
+    static int c2=0;
+    static int c3=0;
 Thread t=new Thread(this);
 Pantalla pa=new Pantalla();
 ListaEnlazada lista=new ListaEnlazada();
@@ -22,6 +25,16 @@ Productos pr=new Productos();
 
 public HiloInventario(){
    // t.start();
+}
+
+public int obC1(){
+    return c1;
+}
+public int obC2(){
+    return c2;
+}
+public int obC3(){
+    return c3;
 }
 
 public void qewr(){
@@ -42,6 +55,7 @@ public void qewr(){
                         raw.setRecoleccion1(pr.obProductos()[0]);
                         System.out.println("se agrego");
                         cont++;
+                        c1++;
                     try {
                         Thread.sleep(10*1000);
                     } catch (InterruptedException ex) {
@@ -56,6 +70,7 @@ public void qewr(){
                         raw.setRecoleccion2(pr.obProductos()[1]);
                         System.out.println("se agrego");
                         cont2++;
+                        c2++;
                     try {
                         Thread.sleep(10*1000);
                     } catch (InterruptedException ex) {
@@ -70,6 +85,7 @@ public void qewr(){
                         raw.setRecoleccion3(pr.obProductos()[2]);
                         System.out.println("se agrego");
                         cont3++;
+                        c3++;
                     try {
                         Thread.sleep(10*1000);
                     } catch (InterruptedException ex) {

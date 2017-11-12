@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
+import java.util.Random;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -35,7 +36,10 @@ class Capa_Server extends JPanel implements Runnable{
  //   private Servidor ser;
     //private double x,y,w,h;
     //private int au=getWidth()/2;
-    int tiempo=200;
+   static int can1=0;
+   static int can2=0;
+    static int can3=0;
+    int tiempo=10;
     int a = 50;
     int b = 50-120;
     int c = 50-220;
@@ -60,6 +64,46 @@ class Capa_Server extends JPanel implements Runnable{
        //  ser=new Servidor();
       hilo=new Thread(this);
        hilo.start();
+     }
+     
+     public void detener(){
+         hilo.interrupt();
+     }
+     
+     public int generarTipo(){
+         Random r=new Random();
+         return 1+r.nextInt(3);
+     }
+     
+     public int generarCantidad(){
+         Random ra=new Random();
+         return 1+ra.nextInt(4);
+     }
+     public int obCan1(){
+         return can1;
+     }
+     
+     public int obCan2(){
+         return can2;
+     }
+     
+     public int obCan3(){
+         return can3;
+     }
+     
+     public void realizarPedido(int au){
+         switch(au){
+                             case 1:
+                                 can1+=generarCantidad();
+                                 break;
+                             case 2:
+                                 can2+=generarCantidad();
+                                 break;
+                                 
+                             case 3:
+                                 can3+=generarCantidad();
+                                 break;
+                         }
      }
      
      public void arreglo(String[] r){
@@ -171,6 +215,9 @@ class Capa_Server extends JPanel implements Runnable{
                        cola1=0;
                         a+=20;
                          repaint();
+                         int auxinu=generarTipo();
+                         realizarPedido(auxinu);
+                         
                     }
                 }
 //                while (x < 200) {
@@ -197,6 +244,8 @@ class Capa_Server extends JPanel implements Runnable{
                          cola1=0;
                          b+=20;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                //          aviso2="";
                          //a+=20;
             //            cola2--;
@@ -219,6 +268,8 @@ class Capa_Server extends JPanel implements Runnable{
                          c+=20;
                          cola1--;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                  //        aviso3="";
                          //a+=20;
                  //      cola3--;
@@ -235,6 +286,8 @@ class Capa_Server extends JPanel implements Runnable{
                          c+=20;
                          d+=20;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                     }
                 }
                 while (d < 200) {
@@ -245,7 +298,7 @@ class Capa_Server extends JPanel implements Runnable{
                     c+=20;
                    repaint();
                     if(d==190){
-                       aviso1="Ocupado";
+                       aviso1="Cola";
                         cola1++;
                         repaint();
                          Thread.sleep(5000);
@@ -253,6 +306,8 @@ class Capa_Server extends JPanel implements Runnable{
                          d+=20;
                          cola1--;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                          
                     //     aviso1="";
                          //a+=20;
@@ -272,17 +327,18 @@ class Capa_Server extends JPanel implements Runnable{
                    
                         if(b>380&&b<401){
                            aviso2="Cola";
-                        cola2++;
+                     //   cola2++;
                          repaint();
                          Thread.sleep(5000);
                          System.out.println("ColaB llego a 2");
-                         cola2--;
+                        // cola2--;
                          a+=20;
                          b+=20;
                          c+=20;
                          d+=20;
                          repaint();
-                        
+                         int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                     }
                    
                    
@@ -300,6 +356,8 @@ class Capa_Server extends JPanel implements Runnable{
                          c+=20;
                          d+=20;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                         
                    }
                    
@@ -307,7 +365,7 @@ class Capa_Server extends JPanel implements Runnable{
                    if(b>580&&b<601){
                         aviso3="Cola";
                         cola3++;
-                 
+                  cola3++;
                          repaint();
                          Thread.sleep(5000);
                          System.out.println("ColaB llego a 3");
@@ -318,6 +376,8 @@ class Capa_Server extends JPanel implements Runnable{
                          c+=20;
                          d+=20;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                         
                    }
                          
@@ -334,28 +394,32 @@ class Capa_Server extends JPanel implements Runnable{
                          c+=20;
                          d+=20;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                    }
                    
                    if(d>580&&d<601){
                         aviso3="Cola";
-                        cola3++;
+                     //   cola3++;
                  
                          repaint();
                          Thread.sleep(5000);
                          System.out.println("ColaD llego a 3");
-                         cola3--;
+                       //  cola3--;
                        
                          a+=20;
                          b+=20;
                          c+=20;
                          d+=20;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                         
                    }
                    
                   if(d==390){
-                      aviso2="Ocupado";
-                        cola2++;
+                      aviso2="Cola";
+                 //       cola2++;
                         repaint();
                          Thread.sleep(5000);
                          System.out.println("ColaD llego a 2");
@@ -363,12 +427,14 @@ class Capa_Server extends JPanel implements Runnable{
                          a+=20;
                          b+=20;
                          c+=20;
-                         cola2--;
+                   //      cola2--;
                          repaint();
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                   }
                   
                   if(c==390){
-                           aviso2="Ocupado";
+                           aviso2="Cola";
                         cola2++;
                         repaint();
                          Thread.sleep(5000);
@@ -379,6 +445,8 @@ class Capa_Server extends JPanel implements Runnable{
                          c+=20;
                          cola2--;
                          repaint(); 
+                          int auxinu=generarTipo();
+                         realizarPedido(auxinu);
                   }
                     
                 }

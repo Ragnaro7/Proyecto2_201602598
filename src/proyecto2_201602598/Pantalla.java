@@ -14,6 +14,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -30,6 +32,16 @@ public class Pantalla extends javax.swing.JFrame {
 private DefaultTableModel modelo;
 private String ruta;
 private String[] columnas;
+private static int c1=0;
+private static int c2=0;
+private static int c3=0;
+private static int ca1=0;
+private static int ca2=0;
+private static int ca3=0;
+Calendar calendario = Calendar.getInstance();
+Calendar calendario2 = Calendar.getInstance();
+int hora0, minutos0, segundos0;
+int hora1, minutos1, segundos1;
 //private String[] server;
 //int contadorserver;
 Servidor servidor;
@@ -45,6 +57,9 @@ RecoleccionDatos reda=new RecoleccionDatos();
      */
     public Pantalla() {
         initComponents();
+        hora0 =calendario.get(Calendar.HOUR_OF_DAY);
+        minutos0 = calendario.get(Calendar.MINUTE);
+        segundos0 = calendario.get(Calendar.SECOND);
         ruta="";
         this.setLocationRelativeTo(null);
         columnas=new String[] {"Accion","NoServidor","Siguiente","X","Y","Alto","Ancho","TasaLlegada",
@@ -117,6 +132,7 @@ RecoleccionDatos reda=new RecoleccionDatos();
                           //reda.setRecoleccion1((String)listaproductos.obElemento(i));
                           reda.setRecoleccion1(Arrays.toString(coo1).substring(1).replaceAll("]",""));
                        contador++;
+                       ca1++;
                    }
                }else if(datos[10].equalsIgnoreCase(coo2[0])){
                    int contador=0;
@@ -124,6 +140,7 @@ RecoleccionDatos reda=new RecoleccionDatos();
                        listaproductos.addCabeza(Arrays.toString(coo2).substring(1).replaceAll("]",""));
                         reda.setRecoleccion2(Arrays.toString(coo2).substring(1).replaceAll("]",""));
                        contador++;
+                       ca2++;
                    }
                }else if(datos[10].equalsIgnoreCase(coo3[0])){
                    int contador=0;
@@ -131,6 +148,7 @@ RecoleccionDatos reda=new RecoleccionDatos();
                        listaproductos.addCabeza(Arrays.toString(coo3).substring(1).replaceAll("]",""));
                         reda.setRecoleccion3(Arrays.toString(coo3).substring(1).replaceAll("]",""));
                        contador++;
+                       ca3++;
                    }
                }
            }
@@ -184,6 +202,8 @@ RecoleccionDatos reda=new RecoleccionDatos();
         Texto = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
         frame2 = new javax.swing.JInternalFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtresultados = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -228,10 +248,20 @@ RecoleccionDatos reda=new RecoleccionDatos();
 
         btnstop.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/stop.png"))); // NOI18N
         btnstop.setToolTipText("Stop");
+        btnstop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnstopActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnstop, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 70, 50));
 
         btnresultados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/resultados.png"))); // NOI18N
         btnresultados.setToolTipText("Resultados");
+        btnresultados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnresultadosActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnresultados, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 20, 70, 50));
 
         btnsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir.png"))); // NOI18N
@@ -288,6 +318,12 @@ RecoleccionDatos reda=new RecoleccionDatos();
 
         frame2.setVisible(true);
         jTabbedPane2.addTab("Simulacion", frame2);
+
+        txtresultados.setColumns(20);
+        txtresultados.setRows(5);
+        jScrollPane1.setViewportView(txtresultados);
+
+        jTabbedPane2.addTab("Resultados", jScrollPane1);
 
         jPanel2.add(jTabbedPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 890, 340));
 
@@ -512,6 +548,81 @@ RecoleccionDatos reda=new RecoleccionDatos();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void btnstopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnstopActionPerformed
+        // TODO add your handling code here:
+         Capa_Server fig=new Capa_Server();
+         fig.detener();
+         c1=fig.obCan1();
+         c2=fig.obCan2();
+         c3=fig.obCan3();
+         hora1 =calendario2.get(Calendar.HOUR_OF_DAY);
+        minutos1 = calendario2.get(Calendar.MINUTE);
+        segundos1 = calendario2.get(Calendar.SECOND);
+        
+         System.out.println(hora0);
+         System.out.println(minutos0);
+         System.out.println(segundos0); 
+        
+        System.out.println(hora1);
+         System.out.println(minutos1);
+         System.out.println(segundos1);
+        
+        
+        
+    }//GEN-LAST:event_btnstopActionPerformed
+
+    private void btnresultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnresultadosActionPerformed
+        // TODO add your handling code here:
+          HiloInventario hil=new HiloInventario();
+     
+        int totalc1=ca1+hil.obC1();
+        int totalc2=ca2+hil.obC2();
+        int totalc3=ca3+hil.obC3();
+        
+        int final1=totalc1-c1;
+        int final2=totalc2-c2;
+        int final3=totalc3-c3;
+        txtresultados.append("------------------------------------------\nCantidad de personas que ingresaron"
+                + "al sistema:\n");
+        txtresultados.append("4\n");
+        
+        
+        txtresultados.append("------------------------------------------\nDurante la simulacion existieron:\n");
+        txtresultados.append("Productos con id 1: "+totalc1+"\n");
+        txtresultados.append("Productos con id 2: "+totalc2+"\n");
+        txtresultados.append("Productos con id 3: "+totalc3+"\n");
+        
+        txtresultados.append("------------------------------------------\nDe los cuales se vendieron:\n");
+        txtresultados.append("Productos con id 1: "+c1+"\n");
+        txtresultados.append("Productos con id 2: "+c2+"\n");
+        txtresultados.append("Productos con id 3: "+c3+"\n");
+        
+        txtresultados.append("------------------------------------------\nInventario final:\n"); 
+        txtresultados.append("producto(s) con id 1: "+final1+"\n");
+        txtresultados.append("producto(s) con id 2: "+final2+"\n");
+        txtresultados.append("producto(s) con id 3: "+final3+"\n");
+      
+        txtresultados.append("------------------------------------------\nDetalles Inventario:\n");
+        txtresultados.append("producto(s) con id 1: "+producto.obProductos(0)+"\n");
+        txtresultados.append("producto(s) con id 2: "+producto.obProductos(1)+"\n");
+        txtresultados.append("producto(s) con id 3: "+producto.obProductos(2)+"\n");
+           
+        String hf=String.valueOf(hora1-hora0);
+        String mf=String.valueOf(minutos1-minutos0);
+        String sf=String.valueOf(segundos1-segundos0);
+        
+        txtresultados.append("------------------------------------------\nTiempo de ejecucion:\n");
+        txtresultados.append(hf+" horas "+mf+" minutos "+sf+" segundos");
+//  System.out.println(totalc1);
+       /* for(int i=0;i<listaproductos.obTamaño();i++){
+            //ca1,ca2,ca3 llevan cuantos productos hay inicialmente
+            
+            
+        }
+        */
+        
+    }//GEN-LAST:event_btnresultadosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -563,7 +674,9 @@ RecoleccionDatos reda=new RecoleccionDatos();
     private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable tabla;
+    private javax.swing.JTextArea txtresultados;
     // End of variables declaration//GEN-END:variables
 }
