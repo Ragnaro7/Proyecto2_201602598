@@ -42,6 +42,7 @@ Calendar calendario = Calendar.getInstance();
 Calendar calendario2 = Calendar.getInstance();
 int hora0, minutos0, segundos0;
 int hora1, minutos1, segundos1;
+private static int patendidos=0;
 //private String[] server;
 //int contadorserver;
 Servidor servidor;
@@ -175,6 +176,12 @@ RecoleccionDatos reda=new RecoleccionDatos();
     public String obRuta(){
         return ruta;
     }
+    public void setAtendidos(int i){
+        patendidos=i;
+    }
+    public int obAtendidos(){
+        return patendidos;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -194,9 +201,6 @@ RecoleccionDatos reda=new RecoleccionDatos();
         btnstop = new javax.swing.JButton();
         btnresultados = new javax.swing.JButton();
         btnsalir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         Texto = new javax.swing.JScrollPane();
@@ -272,30 +276,6 @@ RecoleccionDatos reda=new RecoleccionDatos();
             }
         });
         jPanel1.add(btnsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 70, 50));
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 30, 40, 30));
-
-        jButton3.setText("lista");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, -1, -1));
-
-        jButton4.setText("Arreglos");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 880, 80));
 
@@ -492,62 +472,6 @@ RecoleccionDatos reda=new RecoleccionDatos();
       
     }//GEN-LAST:event_btnplayActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        /*for(String e:server){
-            if(e!=null)
-            System.out.println(e);
-        }*/
-      /*  for(int i=0;i<server.length;i++){
-            if(server[i]!=null){
-                String[] coo=server[i].split(";");
-                double q=Double.parseDouble(coo[2]);
-                double q2=Double.parseDouble(coo[3]);
-                double q3=Double.parseDouble(coo[4]);
-                double q4=Double.parseDouble(coo[5]);
-                System.out.println(q+" "+q2+" "+q3+" "+q4+" ");
-            }
-        }*/
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-       // RecoleccionDatos reda=new RecoleccionDatos();
-      
-        for(String e:reda.obRecoleccion1()){
-            if(e!=null)
-            System.out.println(e);
-        }
-        
-        for(String e:reda.obRecoleccion2()){
-            if(e!=null)
-            System.out.println(e);
-        }
-        
-        for(String e:reda.obRecoleccion3()){
-            if(e!=null)
-            System.out.println(e);
-        }
-       
-     
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        for(int i=0;i<500;i++){
-            
-            if(reda.obRecoleccion1()[i]!=null){
-            System.out.println(reda.obRecoleccion1()[i]);
-            }/*
-            if(reda.obRecoleccion2()[i]!=null){
-            System.out.println(reda.obRecoleccion2()[i]);
-            }
-            if(reda.obRecoleccion3()[i]!=null){
-            System.out.println(reda.obRecoleccion3()[i]);
-             }*/
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void btnstopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnstopActionPerformed
         // TODO add your handling code here:
          Capa_Server fig=new Capa_Server();
@@ -574,7 +498,7 @@ RecoleccionDatos reda=new RecoleccionDatos();
     private void btnresultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnresultadosActionPerformed
         // TODO add your handling code here:
           HiloInventario hil=new HiloInventario();
-     
+      jTabbedPane2.setSelectedIndex(jTabbedPane2.indexOfTab("Resultados"));
         int totalc1=ca1+hil.obC1();
         int totalc2=ca2+hil.obC2();
         int totalc3=ca3+hil.obC3();
@@ -585,6 +509,9 @@ RecoleccionDatos reda=new RecoleccionDatos();
         txtresultados.append("------------------------------------------\nCantidad de personas que ingresaron"
                 + "al sistema:\n");
         txtresultados.append("4\n");
+         txtresultados.append("------------------------------------------\nCantidad de personas que Salieron"
+                + "al sistema:\n");
+        txtresultados.append(String.valueOf(obAtendidos())+"\n");
         
         
         txtresultados.append("------------------------------------------\nDurante la simulacion existieron:\n");
@@ -669,9 +596,6 @@ RecoleccionDatos reda=new RecoleccionDatos();
     private javax.swing.JButton btnstop;
     private javax.swing.JFileChooser fc;
     private javax.swing.JInternalFrame frame2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

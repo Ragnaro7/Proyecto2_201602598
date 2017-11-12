@@ -61,6 +61,11 @@ public class IngresarSistema extends javax.swing.JFrame {
         jPanel2.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 110, 40));
 
         btncancelar.setText("Cancelar");
+        btncancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btncancelarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 120, 40));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 470, 80));
@@ -74,6 +79,11 @@ public class IngresarSistema extends javax.swing.JFrame {
         p.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btningresarActionPerformed
+
+    private void btncancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btncancelarActionPerformed
 
     /**
      * @param args the command line arguments

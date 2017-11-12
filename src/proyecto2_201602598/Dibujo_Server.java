@@ -36,10 +36,11 @@ class Capa_Server extends JPanel implements Runnable{
  //   private Servidor ser;
     //private double x,y,w,h;
     //private int au=getWidth()/2;
+    Pantalla palla=new Pantalla();
    static int can1=0;
    static int can2=0;
     static int can3=0;
-    int tiempo=10;
+    int tiempo=5;
     int a = 50;
     int b = 50-120;
     int c = 50-220;
@@ -53,6 +54,7 @@ class Capa_Server extends JPanel implements Runnable{
     private int au=5;
     private String[] arr;
      Thread hilo;
+     static int atendido=0;
    /* public Capa_Server(String x1,String y1,String w1,String h1){
         x=Double.parseDouble(x1);
         y=Double.parseDouble(y1);
@@ -104,6 +106,10 @@ class Capa_Server extends JPanel implements Runnable{
                                  can3+=generarCantidad();
                                  break;
                          }
+     }
+     
+     public int Atendidos(){
+         return atendido;
      }
      
      public void arreglo(String[] r){
@@ -350,7 +356,8 @@ class Capa_Server extends JPanel implements Runnable{
                          Thread.sleep(5000);
                          System.out.println("ColaA llego a 3");
                          cola3--;
-                       
+                       atendido++;
+                       palla.setAtendidos(atendido);
                          a+=20;
                          b+=20;
                          c+=20;
@@ -370,7 +377,8 @@ class Capa_Server extends JPanel implements Runnable{
                          Thread.sleep(5000);
                          System.out.println("ColaB llego a 3");
                          cola3--;
-                       
+                       atendido++;
+                       palla.setAtendidos(atendido);
                          a+=20;
                          b+=20;
                          c+=20;
@@ -388,7 +396,8 @@ class Capa_Server extends JPanel implements Runnable{
                          Thread.sleep(5000);
                          System.out.println("Cola3 llego a 3");
                          cola3--;
-                         
+                         atendido++;
+                         palla.setAtendidos(atendido);
                             a+=20;
                          b+=20;
                          c+=20;
@@ -401,7 +410,8 @@ class Capa_Server extends JPanel implements Runnable{
                    if(d>580&&d<601){
                         aviso3="Cola";
                      //   cola3++;
-                 
+                 atendido++;
+                 palla.setAtendidos(atendido);
                          repaint();
                          Thread.sleep(5000);
                          System.out.println("ColaD llego a 3");
