@@ -42,7 +42,7 @@ public void qewr(){
 }
     @Override
     public void run() {
-    
+    while(true){
         for(int i=0;i<inv.obInventario().length;i++){
             String aux=inv.obInventario()[i];
             if(aux!=null){
@@ -53,49 +53,61 @@ public void qewr(){
                     while(cont<Integer.parseInt(coo[2])){
                         //pa.ingresarProd("dsaf");
                         raw.setRecoleccion1(pr.obProductos()[0]);
-                   //     System.out.println("se agrego");
+                      //  System.out.println("se agrego 1");
                         cont++;
                         c1++;
-                    try {
+                        
+                 /*   try {
                         Thread.sleep(10*1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(HiloInventario.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
                     }
-                    }
+                    break;
                     
                     case "2":
                          int cont2=0;
                     while(cont2<Integer.parseInt(coo[2])){
                         //pa.ingresarProd("dsaf");
                         raw.setRecoleccion2(pr.obProductos()[1]);
-                     //   System.out.println("se agrego");
+                    //    System.out.println("se agrego 2");
                         cont2++;
                         c2++;
-                    try {
+                        
+                /*    try {
                         Thread.sleep(10*1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(HiloInventario.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
                     }
-                    }
+                    break;
                     
                     case "3":
                          int cont3=0;
                     while(cont3<Integer.parseInt(coo[2])){
                         //pa.ingresarProd("dsaf");
                         raw.setRecoleccion3(pr.obProductos()[2]);
-             //           System.out.println("se agrego");
+                     //  System.out.println("se agrego 3");
                         cont3++;
                         c3++;
-                    try {
+                /*    try {
+                        Thread.sleep(10*1000);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(HiloInventario.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
+                    }
+                    break;
+                    
+                }//swtich
+               
+                }
+        }
+         try {
                         Thread.sleep(10*1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(HiloInventario.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    }
-                    
-                }//swtich
-                }
-        }
+    }
         
     
     }

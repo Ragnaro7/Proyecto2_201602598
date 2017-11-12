@@ -488,7 +488,8 @@ time_start = System.currentTimeMillis();
         minutos1 = calendario2.get(Calendar.MINUTE);
         segundos1 = calendario2.get(Calendar.SECOND);
         time_end = System.currentTimeMillis();
-        
+          jTabbedPane2.remove(jTabbedPane2.indexOfTab("Simulacion"));
+          JOptionPane.showMessageDialog(null, "Simulacion Finalizada");
       /*   System.out.println(hora0);
          System.out.println(minutos0);
          System.out.println(segundos0); 
@@ -507,16 +508,16 @@ time_start = System.currentTimeMillis();
       jTabbedPane2.setSelectedIndex(jTabbedPane2.indexOfTab("Resultados"));
         int totalc1=ca1+hil.obC1();
         int totalc2=ca2+hil.obC2();
-        int totalc3=ca3+hil.obC3()+5;
+        int totalc3=ca3+hil.obC3();
         
         int final1=totalc1-c1;
         int final2=totalc2-c2;
         int final3=totalc3-c3;
         txtresultados.append("------------------------------------------\nCantidad de personas que ingresaron"
-                + "al sistema:\n");
+                + " al sistema:\n");
         txtresultados.append("4\n");
          txtresultados.append("------------------------------------------\nCantidad de personas que Salieron"
-                + "al sistema:\n");
+                + " al sistema:\n");
         txtresultados.append(String.valueOf(obAtendidos())+"\n");
         
         

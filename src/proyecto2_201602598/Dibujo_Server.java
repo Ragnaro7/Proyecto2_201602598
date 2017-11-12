@@ -12,6 +12,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Arrays;
 import java.util.Random;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -48,6 +49,7 @@ class Capa_Server extends JPanel implements Runnable{
     String aviso1="";
     String aviso2="";
     String aviso3="";
+    boolean parar=true;
     private int cola1=0;
     private int cola2=0;
     private int cola3=0;
@@ -201,7 +203,7 @@ class Capa_Server extends JPanel implements Runnable{
         HiloInventario hilito=new HiloInventario();
                          hilito.qewr();
         try{
-              while(true){
+              while(!Thread.currentThread().isInterrupted()){
         while (a < 200) {
             Thread.sleep(tiempo);
                     a += 20;
@@ -501,7 +503,7 @@ class Capa_Server extends JPanel implements Runnable{
 */
     }
         }catch(Exception e){
-            
+            Thread.interrupted();
         }
   
     
