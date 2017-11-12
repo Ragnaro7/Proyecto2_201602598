@@ -40,7 +40,7 @@ class Capa_Server extends JPanel implements Runnable{
    static int can1=0;
    static int can2=0;
     static int can3=0;
-    int tiempo=5;
+    int tiempo=2000;
     int a = 50;
     int b = 50-120;
     int c = 50-220;
@@ -214,7 +214,7 @@ class Capa_Server extends JPanel implements Runnable{
                         aviso1="Cola";
                         cola1++;
                          Thread.sleep(5000);
-                         System.out.println("cola1 llego");
+                      //   System.out.println("cola1 llego");
                          
                          aviso1="";
                          //a+=20;
@@ -246,7 +246,7 @@ class Capa_Server extends JPanel implements Runnable{
                         aviso1="Cola";
                         cola1++;
                          Thread.sleep(5000);
-                         System.out.println("Cola2 llego");
+                      //   System.out.println("Cola2 llego");
                          cola1=0;
                          b+=20;
                          repaint();
@@ -270,7 +270,7 @@ class Capa_Server extends JPanel implements Runnable{
                         aviso1="Cola";
                         cola1++;
                          Thread.sleep(5000);
-                         System.out.println("cola c llego a 1");
+                       //  System.out.println("cola c llego a 1");
                          c+=20;
                          cola1--;
                          repaint();
@@ -285,7 +285,7 @@ class Capa_Server extends JPanel implements Runnable{
                         cola2++;
                          repaint();
                          Thread.sleep(5000);
-                         System.out.println("ColaA llego a 2");
+                    //     System.out.println("ColaA llego a 2");
                          cola2--;
                          a+=20;
                          b+=20;
@@ -308,7 +308,7 @@ class Capa_Server extends JPanel implements Runnable{
                         cola1++;
                         repaint();
                          Thread.sleep(5000);
-                         System.out.println("PersonaD llego a A");
+                     //    System.out.println("PersonaD llego a A");
                          d+=20;
                          cola1--;
                          repaint();
@@ -336,7 +336,7 @@ class Capa_Server extends JPanel implements Runnable{
                      //   cola2++;
                          repaint();
                          Thread.sleep(5000);
-                         System.out.println("ColaB llego a 2");
+                   //      System.out.println("ColaB llego a 2");
                         // cola2--;
                          a+=20;
                          b+=20;
@@ -354,7 +354,7 @@ class Capa_Server extends JPanel implements Runnable{
                  
                          repaint();
                          Thread.sleep(5000);
-                         System.out.println("ColaA llego a 3");
+                     //    System.out.println("ColaA llego a 3");
                          cola3--;
                        atendido++;
                        palla.setAtendidos(atendido);
@@ -375,7 +375,7 @@ class Capa_Server extends JPanel implements Runnable{
                   cola3++;
                          repaint();
                          Thread.sleep(5000);
-                         System.out.println("ColaB llego a 3");
+                    //     System.out.println("ColaB llego a 3");
                          cola3--;
                        atendido++;
                        palla.setAtendidos(atendido);
@@ -394,7 +394,7 @@ class Capa_Server extends JPanel implements Runnable{
                         cola3++;
                         repaint();
                          Thread.sleep(5000);
-                         System.out.println("Cola3 llego a 3");
+                      //   System.out.println("Cola3 llego a 3");
                          cola3--;
                          atendido++;
                          palla.setAtendidos(atendido);
@@ -414,7 +414,7 @@ class Capa_Server extends JPanel implements Runnable{
                  palla.setAtendidos(atendido);
                          repaint();
                          Thread.sleep(5000);
-                         System.out.println("ColaD llego a 3");
+                   //      System.out.println("ColaD llego a 3");
                        //  cola3--;
                        
                          a+=20;
@@ -432,7 +432,7 @@ class Capa_Server extends JPanel implements Runnable{
                  //       cola2++;
                         repaint();
                          Thread.sleep(5000);
-                         System.out.println("ColaD llego a 2");
+                       //  System.out.println("ColaD llego a 2");
                          d+=20;
                          a+=20;
                          b+=20;
@@ -448,7 +448,7 @@ class Capa_Server extends JPanel implements Runnable{
                         cola2++;
                         repaint();
                          Thread.sleep(5000);
-                         System.out.println("ColaC llego a 2");
+                      //   System.out.println("ColaC llego a 2");
                          d+=20;
                          a+=20;
                          b+=20;

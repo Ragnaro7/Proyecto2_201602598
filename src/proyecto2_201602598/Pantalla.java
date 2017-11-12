@@ -43,6 +43,7 @@ Calendar calendario2 = Calendar.getInstance();
 int hora0, minutos0, segundos0;
 int hora1, minutos1, segundos1;
 private static int patendidos=0;
+  long time_start, time_end;
 //private String[] server;
 //int contadorserver;
 Servidor servidor;
@@ -58,6 +59,10 @@ RecoleccionDatos reda=new RecoleccionDatos();
      */
     public Pantalla() {
         initComponents();
+      
+time_start = System.currentTimeMillis();
+//ReallyHeavyTask(); // llamamos a la tarea
+
         hora0 =calendario.get(Calendar.HOUR_OF_DAY);
         minutos0 = calendario.get(Calendar.MINUTE);
         segundos0 = calendario.get(Calendar.SECOND);
@@ -482,14 +487,15 @@ RecoleccionDatos reda=new RecoleccionDatos();
          hora1 =calendario2.get(Calendar.HOUR_OF_DAY);
         minutos1 = calendario2.get(Calendar.MINUTE);
         segundos1 = calendario2.get(Calendar.SECOND);
+        time_end = System.currentTimeMillis();
         
-         System.out.println(hora0);
+      /*   System.out.println(hora0);
          System.out.println(minutos0);
          System.out.println(segundos0); 
         
         System.out.println(hora1);
          System.out.println(minutos1);
-         System.out.println(segundos1);
+         System.out.println(segundos1);*/
         
         
         
@@ -501,7 +507,7 @@ RecoleccionDatos reda=new RecoleccionDatos();
       jTabbedPane2.setSelectedIndex(jTabbedPane2.indexOfTab("Resultados"));
         int totalc1=ca1+hil.obC1();
         int totalc2=ca2+hil.obC2();
-        int totalc3=ca3+hil.obC3();
+        int totalc3=ca3+hil.obC3()+5;
         
         int final1=totalc1-c1;
         int final2=totalc2-c2;
@@ -525,21 +531,22 @@ RecoleccionDatos reda=new RecoleccionDatos();
         txtresultados.append("Productos con id 3: "+c3+"\n");
         
         txtresultados.append("------------------------------------------\nInventario final:\n"); 
-        txtresultados.append("producto(s) con id 1: "+final1+"\n");
-        txtresultados.append("producto(s) con id 2: "+final2+"\n");
-        txtresultados.append("producto(s) con id 3: "+final3+"\n");
+        txtresultados.append("Producto(s) con id 1: "+final1+"\n");
+        txtresultados.append("Producto(s) con id 2: "+final2+"\n");
+        txtresultados.append("Producto(s) con id 3: "+final3+"\n");
       
         txtresultados.append("------------------------------------------\nDetalles Inventario:\n");
-        txtresultados.append("producto(s) con id 1: "+producto.obProductos(0)+"\n");
-        txtresultados.append("producto(s) con id 2: "+producto.obProductos(1)+"\n");
-        txtresultados.append("producto(s) con id 3: "+producto.obProductos(2)+"\n");
+        txtresultados.append("Producto(s) con id 1: "+producto.obProductos(0)+"\n");
+        txtresultados.append("Producto(s) con id 2: "+producto.obProductos(1)+"\n");
+        txtresultados.append("Producto(s) con id 3: "+producto.obProductos(2)+"\n");
            
         String hf=String.valueOf(hora1-hora0);
         String mf=String.valueOf(minutos1-minutos0);
         String sf=String.valueOf(segundos1-segundos0);
         
         txtresultados.append("------------------------------------------\nTiempo de ejecucion:\n");
-        txtresultados.append(hf+" horas "+mf+" minutos "+sf+" segundos");
+        //txtresultados.append(hf+" horas "+mf+" minutos "+sf+" segundos");
+         txtresultados.append(String.valueOf(((time_end-time_start)/1000)/60)+" Minutos");
 //  System.out.println(totalc1);
        /* for(int i=0;i<listaproductos.obTamaño();i++){
             //ca1,ca2,ca3 llevan cuantos productos hay inicialmente

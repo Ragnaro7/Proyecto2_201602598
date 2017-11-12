@@ -53,7 +53,7 @@ public void qewr(){
                     while(cont<Integer.parseInt(coo[2])){
                         //pa.ingresarProd("dsaf");
                         raw.setRecoleccion1(pr.obProductos()[0]);
-                        System.out.println("se agrego");
+                   //     System.out.println("se agrego");
                         cont++;
                         c1++;
                     try {
@@ -68,7 +68,7 @@ public void qewr(){
                     while(cont2<Integer.parseInt(coo[2])){
                         //pa.ingresarProd("dsaf");
                         raw.setRecoleccion2(pr.obProductos()[1]);
-                        System.out.println("se agrego");
+                     //   System.out.println("se agrego");
                         cont2++;
                         c2++;
                     try {
@@ -83,7 +83,7 @@ public void qewr(){
                     while(cont3<Integer.parseInt(coo[2])){
                         //pa.ingresarProd("dsaf");
                         raw.setRecoleccion3(pr.obProductos()[2]);
-                        System.out.println("se agrego");
+             //           System.out.println("se agrego");
                         cont3++;
                         c3++;
                     try {
